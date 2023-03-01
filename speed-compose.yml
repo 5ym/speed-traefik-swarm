@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  speed:
+    image: adolfintel/speedtest
+    networks:
+      - main_default
+    environment:
+      MODE: "standalone"
+      TELEMETRY: "true"
+      PASSWORD: ""
+      EMAIL: "info@daco.dev"
+      IPINFO_APIKEY: ""
+    volumes:
+      - ./speed:/var/www/html
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.speed.rule=Host(`s.daco.dev`)"
+        - "traefik.http.routers.speed.tls.certresolver=myresolver"
+        - "traefik.http.services.speed.loadbalancer.server.port=80"
+
+networks:
+  main_default:
+    external: true
+    name: main_default
