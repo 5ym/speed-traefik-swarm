@@ -15,7 +15,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.speed.rule=Host(`s.daco.dev`)"
+        - "traefik.http.routers.speed.rule=Host(`s.doany.dev`)"
         - "traefik.http.routers.speed.tls.certresolver=myresolver"
         - "traefik.http.services.speed.loadbalancer.server.port=80"
 
